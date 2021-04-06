@@ -138,18 +138,28 @@ and typecheck_expression (cenv : class_env) (venv : variable_env) (vinit : S.t)
       typecheck_expression_expecting cenv venv vinit instanceof expected e;
       returned
 
+  | EBinOp (OpEq, e1, e2) ->
+        let type1 = typecheck_expression cenv venv vinit instanceof e1 in
+        let type2 = typecheck_expression cenv venv vinit instanceof e2 in
+        if (compatible type1 type2 instanceof) || (compatible type2 type1 instanceof) then TypBool
+        else error e "Incompatibilty of types for `==`"
+
   | EBinOp (op, e1, e2) ->
       let expected, returned =
         match op with
         | OpAdd
         | OpSub
         | OpMul -> TypInt, TypInt
+        | OpGt
         | OpLt  -> TypInt, TypBool
         | OpAnd -> TypBool, TypBool
+        | OpEq -> assert false 
       in
       typecheck_expression_expecting cenv venv vinit instanceof expected e1;
       typecheck_expression_expecting cenv venv vinit instanceof expected e2;
       returned
+
+(* typoecheckt expr en permier -> donen le type pour le premier puis le second *)
 
   | EMethodCall (o, callee, expressions) ->
      typecheck_call cenv venv vinit instanceof o callee expressions

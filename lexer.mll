@@ -30,6 +30,7 @@ rule get_token = parse
   | '*'       { TIMES }
   | "&&"      { AND }
   | "<"       { LT }
+  | ">"       { GT }
   | '('       { LPAREN }
   | ')'       { RPAREN }
   | '['       { LBRACKET }
@@ -39,6 +40,7 @@ rule get_token = parse
   | '.'       { DOT }
   | ';'       { SEMICOLON }
   | '='       { ASSIGN }
+  | "=="      { EQ }
   | ","       { COMMA }
   | "true"    { BOOL_CONST true }
   | "false"   { BOOL_CONST false }
