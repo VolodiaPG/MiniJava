@@ -506,6 +506,13 @@ let instr2c
        fprintf out "while (%a) %a"
          (expr2c method_name class_info) c
          instr2c i
+    
+    | IFor (c1, c2, c3, i) ->
+       fprintf out "for (%a;%a;%a) %a"
+         (expr2c method_name class_info) c1
+         (expr2c method_name class_info) c2
+         (expr2c method_name class_info) c3
+         instr2c i
 
     | IBlock is ->
        fprintf out "{%a%t}"

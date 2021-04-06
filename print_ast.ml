@@ -202,6 +202,20 @@ let rec print_instruction prefix out i =
        prefix'
        branch_end
        (print_instruction prefix') i
+  | IFor (c1, c2, c3, i) ->
+     fprintf out "IFor\n%s%s%a\n%s%s%a\n%s%s%a\n%s%s%a"
+       prefix'
+       branch
+       (print_expression (prefix' ^ pipe)) c1
+       prefix'
+       branch
+       (print_expression (prefix' ^ pipe)) c2
+       prefix'
+       branch
+       (print_expression (prefix' ^ pipe)) c3
+       prefix'
+       branch_end
+       (print_instruction prefix') i
   | ISetVar (id, e) ->
      fprintf out "ISetVar\n%s%s%a\n%s%s%a"
        prefix'
