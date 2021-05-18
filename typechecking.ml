@@ -222,6 +222,10 @@ let rec typecheck_instruction (cenv : class_env) (venv : variable_env) (vinit : 
       typecheck_instruction cenv venv vinit instanceof ielse
     in
     S.inter vinit1 vinit2
+  
+  | ISIf (cond, ithen) ->
+    typecheck_expression_expecting cenv venv vinit instanceof TypBool cond;
+    typecheck_instruction cenv venv vinit instanceof ithen
 
   | IWhile (cond, ibody) ->
     typecheck_expression_expecting cenv venv vinit instanceof TypBool cond;

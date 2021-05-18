@@ -194,6 +194,14 @@ let rec print_instruction prefix out i =
        prefix'
        branch_end
        (print_instruction prefix') i2
+  | ISIf (e, i) ->
+     fprintf out "ISIf\n%s%s%a\n%s%s%a"
+       prefix'
+       branch
+       (print_expression (prefix' ^ pipe)) e
+       prefix'
+       branch_end
+       (print_instruction prefix') i
   | IWhile (e, i) ->
      fprintf out "IWhile\n%s%s%a\n%s%s%a"
        prefix'
