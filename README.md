@@ -4,6 +4,13 @@
 to [C](https://en.wikipedia.org/wiki/C_%28programming_language%29).\
 The construction of this transpiler is documented on [www.mrcoder.org](https://www.mrcoder.org/en/compiler/minijava/).
 
+What has been added:
+- Equality operator
+- For Loop
+- If statement where `else` is not mandatory
+
+Repo: <https://github.com/VolodiaPG/MiniJava>
+
 ### Install Dependencies
 
 #### Linux (Ubuntu)
